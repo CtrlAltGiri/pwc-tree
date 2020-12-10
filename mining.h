@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <fstream>
+#include <algorithm>
 
 extern "C"{
     #include "wcTree.h"
@@ -51,18 +52,17 @@ void joinOperationPowerSet(vector<vector<int>> &combinationsSoFar, int* primesOf
 
     // Main Join operation algo
     int combinationsSoFarSize = combinationsSoFar.size();
+    vector<int> newCombination;
     for(int i = 0; i < combinationsSoFarSize; i++){
-
-        vector<int> newCombination = combinationsSoFar[i];
-        int newCombinationSize = newCombination.size();
-
         for(int j = 0; j < allCombinations.size(); j++){
+
+            newCombination = combinationsSoFar[i];
             newCombination.insert(newCombination.end(), allCombinations[j].begin(), allCombinations[j].end());
+
+            sort(newCombination.begin(), newCombination.end());
 
             combinationsSoFar.push_back(newCombination);
             freqTable[newCombination] += qty;
-
-            newCombination.erase(newCombination.begin() + newCombinationSize, newCombination.end() - 1);
         }
     }
 
@@ -82,6 +82,7 @@ void mineTree(NODE root, vector<vector<int>> combinationsSoFar, map<vector<int>,
     int n = 0;
     int *primesOfRoot = (int*) malloc(sizeof(int) * MAX_LIMIT);
     findFactorsNode(primesOfRoot, &n, root);
+    sort(primesOfRoot, n);
 
     // Mine the right node
     if(root -> flag == 'r'){

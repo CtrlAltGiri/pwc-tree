@@ -26,11 +26,11 @@ int main(){
 
     // STEP 2: MINE THE TREE
     map<vector<int>, int> freqTable;
-    mineTree(root -> CHILD, {}, freqTable);
+    mineTree(root -> CHILD, vector<vector<int>>(), freqTable);
 
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("\nINSERTION + MINING = %lf seconds\n", cpu_time_used);
+    printf("INSERTION + MINING = %lf seconds\n", cpu_time_used);
 
     // STEP 3: PICK THE FREQUENT AND RARE ITEMSETS
 
@@ -56,5 +56,5 @@ int main(){
             rare << "COUNT = " << i.second << endl;
         }
     }
-    cout << "Frequent and Rare Itemsets are generated in the output folder." << endl << endl;
+    cout << endl << "Frequent and Rare Itemsets are generated in the output folder." << endl << endl;
 }
