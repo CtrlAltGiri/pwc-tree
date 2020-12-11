@@ -31,8 +31,12 @@ int main(){
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("INSERTION + MINING = %lf seconds\n", cpu_time_used);
 
-    // STEP 3: PICK THE FREQUENT AND RARE ITEMSETS
+    // STEP 3: MEMORY CALCULATIONS
+    printf("\nTotal Inserted Rows: %u\n", insertedRows);
+	MemCalculate(root -> CHILD);
+	printf("Total Memory Usage: %lu bytes\n", MemUsage);
 
+    // STEP 4: PICK THE FREQUENT AND RARE ITEMSETS
     ofstream frequent, rare;
     frequent.open("./output/frequent.txt");
     rare.open("./output/rare.txt");

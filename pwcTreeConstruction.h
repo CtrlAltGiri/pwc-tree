@@ -244,11 +244,6 @@ NODE PWCTreeConstruction(int rows, int &insertedRows){
 	free(line);
 	fclose(stream);
 
-	printf("\nTotal Inserted Rows: %u\n", insertedRows);
-
-	MemCalculate(root -> CHILD);
-	printf("Total Memory Usage: %lu bytes\n", MemUsage);
-
 	// printf("Nodes Traversed : %d\n", tempMem);
 	// printf("Actual I : %d\n\n", mainI);
 
