@@ -5,7 +5,7 @@
 #include <algorithm>
 
 extern "C"{
-    #include "wcTree.h"
+    #include "pwcTreeConstruction.h"
 }
 
 using namespace std;

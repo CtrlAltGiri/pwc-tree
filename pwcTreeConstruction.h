@@ -156,7 +156,7 @@ void insertIntoTree(NODE root, int* values, int count){
 }
 
 
-NODE PWCTreeConstruction(int rows){
+NODE PWCTreeConstruction(int rows, int &insertedRows){
 
 	NODE root;
 	root = (NODE)malloc(sizeof(struct node));
@@ -189,7 +189,7 @@ NODE PWCTreeConstruction(int rows){
 
 	//fgets(line, 10000, stream);  // removes first line from the reading
 
-	unsigned int insertedRows = 0, mainI = 0;
+	unsigned int mainI = 0;
 
 	unsigned int greaterThanPrev;
 	for(int i = 0; i < rows; i++){
