@@ -25,9 +25,7 @@ int main(){
     map<vector<int>, int> freqTable;
     int rareRows = (rareThreshold * insertedRows) / 100;
     int freqRows = (freqThreshold * insertedRows) / 100;
-	cout<<"r:"<<rareRows<<" and f:"<<freqRows<<endl;
-int cou=0;
-    mineTree(root -> CHILD, vector<vector<int>>(), freqTable, &cou);
+    mineTree(root -> CHILD, vector<vector<int>>(), freqTable);
 
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
@@ -44,34 +42,22 @@ int cou=0;
     rare.open("./output/rare.txt");
 
     int primePos;
-	/*for(auto i : freqTable){
-		for(int j = 0; j < i.first.size(); j++){
-                	isPrime(i.first[j], &primePos);
-                	cout << primePos << ",";
-           	}
-            cout << "COUNT = " << i.second << endl;
-        }*/
-	int tcf=0,tcr=0;
     for(auto i : freqTable){
-        if(i.second >= freqRows){
+        if(i.second > freqRows){
             for(int j = 0; j < i.first.size(); j++){
                 isPrime(i.first[j], &primePos);
                 frequent << primePos << ',';
             }
             frequent << "COUNT = " << i.second << endl;
-		tcf=tcf+1;
         }
 
         else if(i.second > rareRows && i.second < freqRows){
             for(int j = 0; j < i.first.size(); j++){
                 isPrime(i.first[j], &primePos);
                 rare << primePos << ',';
-		//cout << primePos << ",";
             }
             rare << "COUNT = " << i.second << endl;
-//cout << "COUNT = " << i.second << endl;
-tcr=tcr+1;
         }
     }
-    cout << endl << "Frequent and Rare Itemsets are generated in the output folder f=." <<tcf<<" and r="<< tcr<<endl;
+    cout << endl << "Frequent and Rare Itemsets are generated in the output folder." << endl << endl;
 }

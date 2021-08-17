@@ -3,8 +3,12 @@
 #include "timSort.h"
 
 void insertIntoTree(NODE root, int* values, int count){
-static int e=0;
-e++;
+	
+	// NOT THERE PREVIOUSLY  
+	static int e=0;
+	e++;
+	// NOT THERE PREVIOUSLY
+
 	if(root -> CHILD == NULL){
 		NODE newNode = createNode(values, count, 1, NULL, NULL);
 		root -> CHILD = newNode;
@@ -17,8 +21,7 @@ e++;
 		while(!complete){
 
 			tempValue = isDivisibleArrayNode(values, traverse, count, 0);
-			if(e==164)
-				printf("\ntempval:%d\n",tempValue);
+			
 			// case 1 - is Divisible
 			if(tempValue){
 
@@ -75,8 +78,6 @@ e++;
 				int flag = -1;
 				NODE travTemp;
 				REMNODE veryTemp;
-				if(e==164)
-					printf("traverse -> flag=%c\n",traverse -> flag);
 				while(flag == -1){
 					
 					if(traverse -> flag == 'r'){
@@ -87,12 +88,9 @@ e++;
 						veryTemp = NULL;
 						travTemp = traverse -> RIGHT;
 					}
-
-					if(travTemp == NULL){
-						if(e==164)
-							printf("\ntravtemNULL\n");						
+					
+					if(travTemp == NULL)
 						break;
-					}
 
 					else{ // if encountered is r.
 						int x = isDivisibleArrayNode(values, travTemp, count, 0); // returns 0 if not div, -1 if equal
@@ -219,7 +217,7 @@ NODE PWCTreeConstruction(int rows, int &insertedRows){
 			}
 		}
 
-		/*unsigned long int prod = 1;
+		unsigned long int prod = 1;
 		for(int j = 0; j < cols; j++){
 			if(INT_MAX_FINAL / prod > data[j]){
 				prod *= data[j];
@@ -230,21 +228,17 @@ NODE PWCTreeConstruction(int rows, int &insertedRows){
 			}
 		}
 
-		if(cols < 20){*/
+
+		if(cols < 20){
        		free(tmp);
 			if(!greaterThanPrev)
 				sort(data,cols);
 
-			if(i == 19555)
-				printf("HOLDON");
-
 			insertIntoTree(root, data, cols);
 			insertedRows++;
-		/*}
+		}
 		else
-			i--;*/
-		//fprintf(stdout, "DONE %d\n", i);
-		//fflush(stdout);
+			i--;
 
 		mainI++;
 	}

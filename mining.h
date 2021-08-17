@@ -50,10 +50,6 @@ void joinOperationPowerSet(vector<vector<int>> &combinationsSoFar, int* primesOf
         vector<bool> check(n);
         findAllCombinations(primesOfRoot, n, i, allCombinations, 0, 0, check);
     }
-static int com=0;
-//com=com+allCombinations.size();
-//cout<<"com: "<<com<<endl;
-
 
     // Main Join operation algo
     int combinationsSoFarSize = combinationsSoFar.size();
@@ -67,8 +63,6 @@ static int com=0;
             sort(newCombination.begin(), newCombination.end());
 
             combinationsSoFar.push_back(newCombination);
-com=com+newCombination.size();
-//cout<<"com: "<<com<<endl;
             freqTable[newCombination] += qty;
         }
     }
@@ -80,14 +74,12 @@ com=com+newCombination.size();
     }
 }
 
-void mineTree(NODE root, vector<vector<int>> combinationsSoFar, map<vector<int>, int> &freqTable, int *cou){
+void mineTree(NODE root, vector<vector<int>> combinationsSoFar, map<vector<int>, int> &freqTable){
 
     if(!root){
         return;
     }
-static int hh=0;
-if(root->flag!='r')
-	hh=hh+root->qty;
+
     int n = 0;
     int *primesOfRoot = (int*) malloc(sizeof(int) * MAX_LIMIT);
     findFactorsNode(primesOfRoot, &n, root);
@@ -95,17 +87,17 @@ if(root->flag!='r')
 
     // Mine the right node
     if(root -> flag == 'r'){
-        mineTree(findRightMost(root) -> RIGHT, combinationsSoFar, freqTable,cou);
+        mineTree(findRightMost(root) -> RIGHT, combinationsSoFar, freqTable);
     }
     else{
-        mineTree(root -> RIGHT, combinationsSoFar, freqTable,cou);
+        mineTree(root -> RIGHT, combinationsSoFar, freqTable);
     }
 
     // Find the ultimate powerset + add to the freqTable
     joinOperationPowerSet(combinationsSoFar, primesOfRoot, n, freqTable, root -> qty);
 
     // Mine the child
-    mineTree(root -> CHILD, combinationsSoFar, freqTable, cou);
-*cou=hh;
+    mineTree(root -> CHILD, combinationsSoFar, freqTable);
+
     free(primesOfRoot);
 }
